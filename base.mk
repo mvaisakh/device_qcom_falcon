@@ -201,8 +201,10 @@ BT += bt_logger
 ifeq ($(TARGET_USE_QTI_BT_STACK), true)
 BT += libbluetooth_qti
 endif
-BT += libbt-hidlclient
+
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/qcom/common
+
+#BT += libbt-hidlclient
 
 #C2DColorConvert
 C2DCC := libc2dcolorconvert
