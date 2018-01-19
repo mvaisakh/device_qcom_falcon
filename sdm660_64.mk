@@ -128,6 +128,11 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 # Audio configuration file
 -include $(TOPDIR)hardware/qcom/audio/configs/sdm660/sdm660.mk
 
+# Audio
+PRODUCT_PACKAGES += \
+	android.hardware.audio@2.0-impl \
+	android.hardware.audio@2.0-service
+
 PRODUCT_PACKAGES += android.hardware.media.omx@1.0-impl
 
 # Sensor HAL conf file
