@@ -175,6 +175,8 @@ PRODUCT_PACKAGES += \
     vendor.display.color@1.0-service \
     vendor.display.color@1.0-impl
 
+PRODUCT_PACKAGES += libdisplayconfig
+
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
