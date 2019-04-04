@@ -28,7 +28,7 @@ TARGET_NO_KERNEL := false
 # Some framework code requires this to enable BT
 BOARD_HAVE_BLUETOOTH := true
 BOARD_USES_WIPOWER := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/qcom/common
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/qcom/sdm660
 
 USE_OPENGL_RENDERER := true
 BOARD_USE_LEGACY_UI := true

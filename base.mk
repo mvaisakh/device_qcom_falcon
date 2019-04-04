@@ -202,7 +202,7 @@ ifeq ($(TARGET_USE_QTI_BT_STACK), true)
 BT += libbluetooth_qti
 endif
 
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/qcom/common
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/qcom/sdm660
 
 #BT += libbt-hidlclient
 
@@ -1098,7 +1098,7 @@ endif
 
 # gps/location secuity configuration file
 PRODUCT_COPY_FILES += \
-    device/qcom/common/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
+    device/qcom/sdm660/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
 #copy codecs_xxx.xml to (TARGET_COPY_OUT_VENDOR)/etc/
 PRODUCT_COPY_FILES += \
@@ -1106,12 +1106,12 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml \
-    device/qcom/common/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
-    device/qcom/common/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
+    device/qcom/sdm660/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
+    device/qcom/sdm660/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
 ifneq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS),true)
 PRODUCT_COPY_FILES += \
-    device/qcom/common/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
+    device/qcom/sdm660/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
 endif
 
 ifeq ($(strip $(TARGET_USES_NQ_NFC)),true)
@@ -1129,7 +1129,7 @@ PRODUCT_COPY_FILES += \
 endif
 
 # include additional build utilities
--include device/qcom/common/utils.mk
+-include device/qcom/sdm660/utils.mk
 
 # Copy the vulkan feature level file.
 # Targets listed in VULKAN_FEATURE_LEVEL_0_TARGETS_LIST supports only vulkan feature level 0.
@@ -1154,8 +1154,8 @@ endif
 ifneq ($(strip $(TARGET_USES_RRO)),true)
 # enable overlays to use our version of
 # source/resources etc.
-DEVICE_PACKAGE_OVERLAYS += device/qcom/common/device/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/qcom/common/product/overlay
+DEVICE_PACKAGE_OVERLAYS += device/qcom/sdm660/device/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/qcom/sdm660/product/overlay
 endif
 
 # Set up flags to determine the kernel version
@@ -1226,7 +1226,7 @@ PRODUCT_PACKAGES += \
 # have been removed, TARGET_FS_CONFIG_GEN should be made unconditional.
 DEVICE_CONFIG_DIR := $(dir $(firstword $(subst ]],, $(word 2, $(subst [[, ,$(_node_import_context))))))
 ifeq ($(wildcard $(DEVICE_CONFIG_DIR)/android_filesystem_config.h),)
-  TARGET_FS_CONFIG_GEN := device/qcom/common/config.fs
+  TARGET_FS_CONFIG_GEN := device/qcom/sdm660/config.fs
 else
   $(warning **********)
   $(warning TODO: Need to replace legacy $(DEVICE_CONFIG_DIR)android_filesystem_config.h with config.fs)

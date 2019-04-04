@@ -1,4 +1,4 @@
-$(call inherit-product, device/qcom/common/base.mk)
+$(call inherit-product, device/qcom/sdm660/base.mk)
 
 # For PRODUCT_COPY_FILES, the first instance takes precedence.
 # Since we want use QC specific files, we should inherit
@@ -39,12 +39,12 @@ endif
 
 # whitelisted app
 PRODUCT_COPY_FILES += \
-    device/qcom/common/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
+    device/qcom/sdm660/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
 PRODUCT_COPY_FILES += \
-    device/qcom/common/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
+    device/qcom/sdm660/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
 
-PRODUCT_PRIVATE_KEY := device/qcom/common/qcom.key
+PRODUCT_PRIVATE_KEY := device/qcom/sdm660/qcom.key
 PRODUCT_PACKAGES += qcril.db
 
 ifneq ($(TARGET_DEFINES_DALVIK_HEAP), true)
