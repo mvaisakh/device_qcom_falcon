@@ -19,11 +19,12 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a73
 
-TARGET_NO_BOOTLOADER := false
+TARGET_NO_BOOTLOADER := true
 TARGET_USES_UEFI := true
 TARGET_NO_KERNEL := false
+TARGET_KERNEL_CONFIG := m2pro_defconfig
 
--include $(QCPATH)/common/sdm660_64/BoardConfigVendor.mk
+-include $(QCPATH)/common/sdm660/BoardConfigVendor.mk
 
 # Some framework code requires this to enable BT
 BOARD_HAVE_BLUETOOTH := true
@@ -61,15 +62,15 @@ BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 
 ifeq ($(ENABLE_AB), true)
   ifeq ($(ENABLE_VENDOR_IMAGE), true)
-    TARGET_RECOVERY_FSTAB := device/qcom/sdm660_64/recovery_AB_split_variant.fstab
+    TARGET_RECOVERY_FSTAB := device/qcom/sdm660/recovery_AB_split_variant.fstab
   else
-    TARGET_RECOVERY_FSTAB := device/qcom/sdm660_64/recovery_AB_non-split_variant.fstab
+    TARGET_RECOVERY_FSTAB := device/qcom/sdm660/recovery_AB_non-split_variant.fstab
   endif
 else
   ifeq ($(ENABLE_VENDOR_IMAGE), true)
-    TARGET_RECOVERY_FSTAB := device/qcom/sdm660_64/recovery_non-AB_split_variant.fstab
+    TARGET_RECOVERY_FSTAB := device/qcom/sdm660/recovery_non-AB_split_variant.fstab
   else
-    TARGET_RECOVERY_FSTAB := device/qcom/sdm660_64/recovery_non-AB_non-split_variant.fstab
+    TARGET_RECOVERY_FSTAB := device/qcom/sdm660/recovery_non-AB_non-split_variant.fstab
   endif
 endif
 
@@ -89,13 +90,13 @@ endif
 # Enable suspend during charger mode
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
-BOARD_VENDOR_KERNEL_MODULES := \
-    $(KERNEL_MODULES_OUT)/wil6210.ko \
-    $(KERNEL_MODULES_OUT)/msm_11ad_proxy.ko \
-    $(KERNEL_MODULES_OUT)/qca_cld3_wlan.ko \
-    $(KERNEL_MODULES_OUT)/rdbg.ko \
-    $(KERNEL_MODULES_OUT)/mpq-adapter.ko \
-    $(KERNEL_MODULES_OUT)/mpq-dmx-hw-plugin.ko
+#BOARD_VENDOR_KERNEL_MODULES := \
+#    $(KERNEL_MODULES_OUT)/wil6210.ko \
+#    $(KERNEL_MODULES_OUT)/msm_11ad_proxy.ko \
+#    $(KERNEL_MODULES_OUT)/qca_cld3_wlan.ko \
+#    $(KERNEL_MODULES_OUT)/rdbg.ko \
+#    $(KERNEL_MODULES_OUT)/mpq-adapter.ko \
+#    $(KERNEL_MODULES_OUT)/mpq-dmx-hw-plugin.ko
 
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
@@ -105,6 +106,14 @@ TARGET_USES_QCOM_DISPLAY_BSP := true
 TARGET_USES_HWC2 := true
 TARGET_USES_GRALLOC1 := true
 
+
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0xc170000 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3 
+BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_BASE        := 0x00000000
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+
+TARGET_KERNEL_VERSION := 4.4
 ifeq ($(BOARD_KERNEL_CMDLINE),)
 ifeq ($(TARGET_KERNEL_VERSION),4.4)
      BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0xc170000
@@ -114,8 +123,8 @@ endif
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=1 firmware_class.path=/vendor/firmware_mnt/image loop.max_part=7
 endif
 
-BOARD_EGL_CFG := device/qcom/sdm660_64/egl.cfg
-BOARD_SECCOMP_POLICY := device/qcom/sdm660_32/seccomp
+BOARD_EGL_CFG := device/qcom/sdm660/egl.cfg
+#BOARD_SECCOMP_POLICY := device/qcom/sdm660_32/seccomp
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -125,7 +134,7 @@ BOARD_RAMDISK_OFFSET     := 0x02000000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_USES_UNCOMPRESSED_KERNEL := false
+#TARGET_USES_UNCOMPRESSED_KERNEL := false
 
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
@@ -139,10 +148,10 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 TARGET_NO_RPC := true
 
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_INIT_VENDOR_LIB := libinit_msm
+#TARGET_INIT_VENDOR_LIB := libinit_msm
 
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_KERNEL_APPEND_DTB := true
+#TARGET_KERNEL_APPEND_DTB := true
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 
 #Enable PD locater/notifier

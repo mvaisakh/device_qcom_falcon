@@ -1,6 +1,6 @@
 TARGET_USES_AOSP := true
 
-DEVICE_PACKAGE_OVERLAYS := device/qcom/sdm660_64/overlay
+DEVICE_PACKAGE_OVERLAYS := device/qcom/sdm660/overlay
 
 # Default vendor configuration.
 ifeq ($(ENABLE_VENDOR_IMAGE),)
@@ -38,22 +38,22 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Video codec configuration files
 ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
 PRODUCT_COPY_FILES += \
-    device/qcom/sdm660_64/media_profiles.xml:system/etc/media_profiles.xml \
-    device/qcom/sdm660_64/media_profiles_sdm660_v1.xml:system/etc/media_profiles_sdm660_v1.xml \
-    device/qcom/sdm660_64/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_vendor.xml \
-    device/qcom/sdm660_64/media_profiles_sdm660_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_sdm660_v1.xml \
-    device/qcom/sdm660_64/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
-    device/qcom/sdm660_64/media_codecs_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor.xml \
-    device/qcom/sdm660_64/media_codecs_sdm660_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_sdm660_v1.xml \
-    device/qcom/sdm660_64/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
-    device/qcom/sdm660_64/media_codecs_performance_sdm660_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_sdm660_v1.xml \
-    device/qcom/sdm660_64/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml
+    device/qcom/sdm660/media_profiles.xml:system/etc/media_profiles.xml \
+    device/qcom/sdm660/media_profiles_sdm660_v1.xml:system/etc/media_profiles_sdm660_v1.xml \
+    device/qcom/sdm660/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_vendor.xml \
+    device/qcom/sdm660/media_profiles_sdm660_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_sdm660_v1.xml \
+    device/qcom/sdm660/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    device/qcom/sdm660/media_codecs_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor.xml \
+    device/qcom/sdm660/media_codecs_sdm660_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_sdm660_v1.xml \
+    device/qcom/sdm660/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
+    device/qcom/sdm660/media_codecs_performance_sdm660_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_sdm660_v1.xml \
+    device/qcom/sdm660/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml
 endif #TARGET_ENABLE_QC_AV_ENHANCEMENTS
 
 # video seccomp policy files
 PRODUCT_COPY_FILES += \
-    device/qcom/sdm660_64/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
-    device/qcom/sdm660_64/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
+    device/qcom/sdm660/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
+    device/qcom/sdm660/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
 
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -72,10 +72,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=256m
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, device/qcom/common/common64.mk)
+$(call inherit-product, device/qcom/sdm660/common64.mk)
 
-PRODUCT_NAME := sdm660_64
-PRODUCT_DEVICE := sdm660_64
+PRODUCT_NAME := sdm660
+PRODUCT_DEVICE := sdm660
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := sdm660 for arm64
 
@@ -105,7 +105,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 #Android EGL implementation
 PRODUCT_PACKAGES += libGLES_android
-PRODUCT_BOOT_JARS += tcmiface
+#PRODUCT_BOOT_JARS += tcmiface
 PRODUCT_BOOT_JARS += telephony-ext
 
 PRODUCT_PACKAGES += telephony-ext
@@ -118,12 +118,12 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.qcom.bluetooth.soc=cherokee
 
-DEVICE_MANIFEST_FILE := device/qcom/sdm660_64/manifest.xml
-DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/sdm660_64/framework_manifest.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/qcom/common/vendor_framework_compatibility_matrix.xml
+DEVICE_MANIFEST_FILE := device/qcom/sdm660/manifest.xml
+DEVICE_MATRIX_FILE   := device/qcom/sdm660/compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/sdm660/framework_manifest.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/qcom/sdm660/vendor_framework_compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    device/qcom/sdm660_64/vendor_framework_compatibility_matrix.xml
+    device/qcom/sdm660/vendor_framework_compatibility_matrix.xml
 
 # Audio configuration file
 -include $(TOPDIR)hardware/qcom/audio/configs/sdm660/sdm660.mk
@@ -132,10 +132,10 @@ PRODUCT_PACKAGES += android.hardware.media.omx@1.0-impl
 
 # Sensor HAL conf file
 PRODUCT_COPY_FILES += \
-    device/qcom/sdm660_64/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+    device/qcom/sdm660/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 # Exclude TOF sensor from InputManager
 PRODUCT_COPY_FILES += \
-    device/qcom/sdm660_64/excluded-input-devices.xml:system/etc/excluded-input-devices.xml
+    device/qcom/sdm660/excluded-input-devices.xml:system/etc/excluded-input-devices.xml
 
 # WLAN host driver
 ifneq ($(WLAN_CHIPSET),)
@@ -144,7 +144,7 @@ endif
 
 # WLAN driver configuration file
 PRODUCT_COPY_FILES += \
-    device/qcom/sdm660_64/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
+    device/qcom/sdm660/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
 PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
@@ -209,7 +209,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # FBE support
 PRODUCT_COPY_FILES += \
-    device/qcom/sdm660_64/init.qti.qseecomd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.qseecomd.sh
+    device/qcom/sdm660/init.qti.qseecomd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.qseecomd.sh
 # VB xml
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:system/etc/permissions/android.software.verified_boot.xml
@@ -218,10 +218,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
 
 # MSM IRQ Balancer configuration file for SDM660
-PRODUCT_COPY_FILES += device/qcom/sdm660_64/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+PRODUCT_COPY_FILES += device/qcom/sdm660/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # MSM IRQ Balancer configuration file for SDM630
-PRODUCT_COPY_FILES += device/qcom/sdm660_64/msm_irqbalance_sdm630.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance_sdm630.conf
+PRODUCT_COPY_FILES += device/qcom/sdm660/msm_irqbalance_sdm630.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance_sdm630.conf
 
 # dm-verity configuration
 PRODUCT_SUPPORTS_VERITY := true

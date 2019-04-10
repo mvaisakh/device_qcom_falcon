@@ -56,7 +56,7 @@ MSM_VIDC_TARGET_LIST := msm8974 msm8610 msm8226 apq8084 msm8916 msm8994 msm8909 
 MASTER_SIDE_CP_TARGET_LIST := msm8996 msm8998 sdm660 sdm845 apq8098_latv sdm710 qcs605 msmnile $(MSMSTEPPE) $(TRINKET)
 
 #List of targets where Vulkan feature level is restricted to 0
-VULKAN_FEATURE_LEVEL_0_TARGETS_LIST := msm8937_32 msm8937_64 sdm660_32 sdm660_64 msm8998 msm8998_32 msm8996 msm8953_64 msm8953_32
+VULKAN_FEATURE_LEVEL_0_TARGETS_LIST := msm8937_32 msm8937_64 sdm660_32 sdm660 msm8998 msm8998_32 msm8996 msm8953_64 msm8953_32
 
 # Below projects/packages with LOCAL_MODULEs will be used by
 # PRODUCT_PACKAGES to build LOCAL_MODULEs that are tagged with
@@ -1038,7 +1038,7 @@ PRODUCT_PACKAGES += librecovery_updater_msm
 PRODUCT_PACKAGES += vcard
 
 # tcmiface for tcm support
-PRODUCT_PACKAGES += tcmiface
+#PRODUCT_PACKAGES += tcmiface
 
 # healthd libaray expanded for mode charger
 PRODUCT_PACKAGES += libhealthd.msm
@@ -1202,10 +1202,10 @@ PRODUCT_BOOT_JARS += com.qualcomm.qti.camera
 endif
 
 # Preloading QPerformance jar to ensure faster perflocks in Boost Framework
-PRODUCT_BOOT_JARS += QPerformance
+#PRODUCT_BOOT_JARS += QPerformance
 
 # Preloading UxPerformance jar to ensure faster UX invoke in Boost Framework
-PRODUCT_BOOT_JARS += UxPerformance
+#PRODUCT_BOOT_JARS += UxPerformance
 
 # OEM Unlock reporting
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -1244,3 +1244,5 @@ endif
 PRODUCT_PACKAGES += liboemaids_system
 PRODUCT_PACKAGES += liboemaids_vendor
 PRODUCT_PACKAGES += android.hardware.health@2.0-service
+
+include vendor/asus/X01BD/X01BD-vendor.mk

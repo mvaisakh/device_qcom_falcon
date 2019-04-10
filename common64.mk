@@ -21,11 +21,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.backup.ntpServer=0.pool.ntp.org \
     sys.vendor.shutdown.waittime=500
 
-ifneq ($(BOARD_FRP_PARTITION_NAME),)
-    PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/bootdevice/by-name/$(BOARD_FRP_PARTITION_NAME)
-else
-    PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/bootdevice/by-name/config
-endif
+#ifneq ($(BOARD_FRP_PARTITION_NAME),)
+#    PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/bootdevice/by-name/$(BOARD_FRP_PARTITION_NAME)
+#else
+#    PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/bootdevice/by-name/config
+#endif
 
 # whitelisted app
 PRODUCT_COPY_FILES += \
