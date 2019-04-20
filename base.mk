@@ -336,6 +336,7 @@ INIT += init.qcom.vendor.rc
 INIT += init.target.vendor.rc
 INIT += init.qti.fm.sh
 INIT += init.qti.can.sh
+INIT += init.qti.charger.sh
 
 #IPROUTE2
 IPROUTE2 := ip
@@ -617,10 +618,12 @@ LIBQDMETADATA := libqdMetaData
 LIBQDMETADATA += libqdMetaData.system
 
 #LIBPOWER
+ifneq ($(TARGET_USES_NON_LEGACY_POWERHAL), true)
 LIBPOWER := power.qcom
 #LIBPOWER -- Add HIDL Packages
 LIBPOWER += android.hardware.power@1.0-impl
 LIBPOWER += android.hardware.power@1.0-service
+endif
 
 #LLVM for RenderScript
 #use qcom LLVM
@@ -892,6 +895,7 @@ PRODUCT_PACKAGES := \
     Mms \
     QtiDialer
 
+
 ifeq ($(TARGET_HAS_LOW_RAM),true)
     DELAUN := Launcher3Go
 else
@@ -1154,8 +1158,13 @@ endif
 ifneq ($(strip $(TARGET_USES_RRO)),true)
 # enable overlays to use our version of
 # source/resources etc.
+ifneq ($(strip $(TARGET_BOARD_AUTO)),true)
 DEVICE_PACKAGE_OVERLAYS += device/qcom/sdm660/device/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/qcom/sdm660/product/overlay
+else
+DEVICE_PACKAGE_OVERLAYS += device/qcom/sdm660/auto/device/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/qcom/sdm660/auto/product/overlay
+endif
 endif
 
 # Set up flags to determine the kernel version
