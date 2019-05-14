@@ -180,6 +180,9 @@ ENABLE_SCHEDBOOST := true
 #Enabling IMS Feature
 TARGET_USES_IMS := true
 
+# Keystore
+TARGET_PROVIDES_KEYMASTER := true
+
 #Add NON-HLOS files for ota upgrade
 ADD_RADIO_FILES := true
 TARGET_RECOVERY_UI_LIB := librecovery_ui_msm
