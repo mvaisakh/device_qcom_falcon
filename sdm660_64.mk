@@ -76,7 +76,7 @@ $(call inherit-product, device/qcom/sdm660/common64.mk)
 
 PRODUCT_NAME := sdm660
 PRODUCT_DEVICE := sdm660
-PRODUCT_BRAND := Android
+PRODUCT_BRAND := qti
 PRODUCT_MODEL := sdm660 for arm64
 
 # default is nosdcard, S/W button enabled in resource
